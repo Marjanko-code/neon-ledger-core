@@ -1,92 +1,162 @@
 # ⚡ NEON LEDGER | District 01 Core Banking
 
-A professional-grade Full-stack banking application built with a focus on financial precision, secure transaction protocols, and a modern Cyberpunk-styled terminal interface.
+A professional-grade full-stack banking application built with a focus on financial precision, secure transaction protocols, and a modern cyberpunk-styled terminal interface.
 
-### 🏗️ System Architecture
+---
+
+## 🏗️ System Architecture
 
 ```mermaid
 graph TD
-    subgraph Frontend_React [banking-frontend]
+    subgraph Frontend
         UI[Neon Terminal UI]
         AX[Axios Client]
     end
 
-    subgraph Backend_Spring_Boot [core-banking/core-banking]
+    subgraph Backend
+        SEC[Spring Security]
         CTRL[Transaction Controller]
         SRV[Transaction Service]
-        SEC[Spring Security]
         REPO[JPA Repositories]
     end
 
     subgraph Database
-        DB[(PostgreSQL - Railway)]
+        DB[(PostgreSQL)]
     end
 
-    UI -->|JSON Requests| AX
-    AX -->|Basic Auth| SEC
+    UI --> AX
+    AX --> SEC
     SEC --> CTRL
     CTRL --> SRV
     SRV --> REPO
     REPO --> DB
+```
 
-    
-Engineering Decisions (ADR)
-Atomic Transactions: Implemented the @Transactional annotation in the Service layer to ensure ACID properties. Money is never deducted from one account without being credited to the other (all-or-nothing principle).
+---
 
-Financial Precision: BigDecimal was chosen over Double or Float to prevent floating-point inaccuracies during currency calculations.
+## 🧠 Engineering Decisions (ADR)
 
-Security: Integrated Spring Security with Basic Authentication to simulate secure node-to-node communication protocols used in private banking networks.
+### Atomic Transactions
+Implemented `@Transactional` in the Service layer to ensure ACID properties and prevent partial transaction states.
 
-API Documentation: The entire backend is documented via OpenAPI / Swagger UI, allowing for seamless frontend-backend integration and testing.
+### Financial Precision
+Used `BigDecimal` instead of `Double` or `Float` to eliminate floating-point rounding errors in financial calculations.
 
-🚀 Key Technical Implementations
-CI/CD Pipeline: Automated testing suite triggered via GitHub Actions on every push to ensure code stability.
+### Security
+Integrated Spring Security with Basic Authentication to protect API endpoints.
 
-Automated Testing: Comprehensive Unit and Integration tests using JUnit 5 and Mockito.
+### API Documentation
+Documented endpoints using OpenAPI / Swagger UI for clear API exploration and testing.
 
-Production Deployment: Hosted on Railway using Java 21 and managed PostgreSQL.
+---
 
-Global Exception Handling: Centralized error management system using @RestControllerAdvice for consistent API error responses.
+## 🚀 Key Technical Implementations
 
-🚦 Getting Started
-Prerequisites
-Java 21 (LTS)
+- ✅ CI/CD Pipeline – Automated testing suite triggered via GitHub Actions
+- ✅ Production Deployment – Hosted on Railway using Java 21
+- ✅ Global Exception Handling – Centralized error handling via `@ControllerAdvice`
+- ✅ Docker Support – Containerized backend service
+- ✅ Unit & Integration Testing – JUnit 5 + Mockito
 
-Node.js (v18+)
+---
 
-Maven
+## 🛠️ Tech Stack
 
-Backend (core-banking)
-Navigate to the directory:
+### Backend
+- Java 21
+- Spring Boot 3
+- Spring Security
+- Spring Data JPA
+- PostgreSQL
+- Maven
 
-Bash
+### Frontend
+- React
+- Axios
+- Node.js 18+
 
+### DevOps
+- GitHub Actions
+- Docker
+- Railway Deployment
+
+---
+
+## 🚦 Getting Started
+
+### 📋 Prerequisites
+
+- Java 21
+- Node.js (v18+)
+- PostgreSQL
+
+---
+
+## 💻 Backend Execution
+
+```bash
 cd core-banking/core-banking
-Build and run:
-
-Bash
-
 ./mvnw spring-boot:run
-Swagger UI: http://localhost:8080/swagger-ui.html
+```
 
-Production API: https://your-railway-backend-url.up.railway.app
+Backend will start on:
 
-Frontend (banking-frontend)
-Navigate to the directory:
+```
+http://localhost:8080
+```
 
-Bash
+Swagger UI:
 
+```
+http://localhost:8080/swagger-ui.html
+```
+
+---
+
+## 🌐 Frontend Execution
+
+```bash
 cd banking-frontend
-Install dependencies:
-
-Bash
-
 npm install
-Start the application:
-
-Bash
-
 npm start
-Terminal UI: http://localhost:3000
+```
 
-Created by Marek Jankovič as part of the District 01 Core Banking project.
+Frontend runs on:
+
+```
+http://localhost:3000
+```
+
+---
+
+## 🔐 Authentication
+
+Basic Authentication is enabled via Spring Security.
+
+Example header:
+
+```
+Authorization: Basic base64(username:password)
+```
+
+---
+
+## 📦 Deployment
+
+The application is deployed on Railway using Java 21 runtime.
+
+CI pipeline automatically runs tests on each push via GitHub Actions.
+
+---
+
+## 👤 Author
+
+Created by **Marek Jankovič**
+
+---
+
+## 📌 Project Status
+
+🚧 Actively maintained  
+🔬 Designed for demonstration of enterprise backend architecture  
+🏦 Focused on transactional integrity and financial correctness
