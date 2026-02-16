@@ -28,8 +28,9 @@ graph TD
     CTRL --> SRV
     SRV --> REPO
     REPO --> DB
+
     
-🧠 Engineering Decisions (ADR)
+Engineering Decisions (ADR)
 Atomic Transactions: Implemented the @Transactional annotation in the Service layer to ensure ACID properties. Money is never deducted from one account without being credited to the other (all-or-nothing principle).
 
 Financial Precision: BigDecimal was chosen over Double or Float to prevent floating-point inaccuracies during currency calculations.
