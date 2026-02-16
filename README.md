@@ -2,7 +2,7 @@
 
 A professional-grade Full-stack banking application built with a focus on financial precision, secure transaction protocols, and a modern Cyberpunk-styled terminal interface.
 
-## 🏗️ System Architecture
+### 🏗️ System Architecture
 
 ```mermaid
 graph TD
@@ -11,7 +11,7 @@ graph TD
         AX[Axios Client]
     end
 
-    subgraph Backend_Spring_Boot [core-banking]
+    subgraph Backend_Spring_Boot [core-banking/core-banking]
         CTRL[Transaction Controller]
         SRV[Transaction Service]
         SEC[Spring Security]
@@ -19,7 +19,7 @@ graph TD
     end
 
     subgraph Database
-        H2[(H2 In-Memory DB)]
+        DB[(PostgreSQL - Railway)]
     end
 
     UI -->|JSON Requests| AX
@@ -27,7 +27,7 @@ graph TD
     SEC --> CTRL
     CTRL --> SRV
     SRV --> REPO
-    REPO --> H2
+    REPO --> DB
 🧠 Engineering Decisions (ADR)
 Atomic Transactions: Implemented the @Transactional annotation in the Service layer to ensure ACID properties. Money is never deducted from one account without being credited to the other (all-or-nothing principle).
 
@@ -42,32 +42,49 @@ CI/CD Pipeline: Automated testing suite triggered via GitHub Actions on every pu
 
 Automated Testing: Comprehensive Unit and Integration tests using JUnit 5 and Mockito.
 
-Containerization: Multi-stage Docker configuration for consistent environment deployment and reduced image size.
+Production Deployment: Hosted on Railway using Java 21 and managed PostgreSQL.
 
 Global Exception Handling: Centralized error management system using @RestControllerAdvice for consistent API error responses.
 
 🚦 Getting Started
 Prerequisites
-Java 21
+Java 21 (LTS)
 
 Node.js (v18+)
 
 Maven
 
 Backend (core-banking)
-Navigate to the directory: cd core-banking
+Navigate to the directory:
 
-Build and run: ./mvnw spring-boot:run
+Bash
 
+cd core-banking/core-banking
+Build and run:
+
+Bash
+
+./mvnw spring-boot:run
 Swagger UI: http://localhost:8080/swagger-ui.html
 
-H2 Console: http://localhost:8080/h2-console (JDBC URL: jdbc:h2:mem:bankdb)
+Production API: https://your-railway-backend-url.up.railway.app
 
 Frontend (banking-frontend)
-Navigate to the directory: cd banking-frontend
+Navigate to the directory:
 
-Install dependencies: npm install
+Bash
 
-Start the application: npm start
+cd banking-frontend
+Install dependencies:
 
+Bash
+
+npm install
+Start the application:
+
+Bash
+
+npm start
 Terminal UI: http://localhost:3000
+
+Created by Marek Jankovič as part of the District 01 Core Banking project.
