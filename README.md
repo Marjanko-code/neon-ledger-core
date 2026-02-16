@@ -162,4 +162,3 @@ Created by **Marek Jankovič**
 🏦 Focused on transactional integrity and financial correctness
 =======
 Created by Marek Jankovič as part of the District 01 Core Banking project.
->>>>>>> f96a25b55c758c247dda30daeb3293b4b6c10162
