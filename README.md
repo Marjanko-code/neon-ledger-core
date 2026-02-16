@@ -7,6 +7,7 @@ A professional-grade full-stack banking application built with a focus on financ
 ## 🏗️ System Architecture
 
 ```mermaid
+
 graph TD
     subgraph Frontend
         UI[Neon Terminal UI]
@@ -31,8 +32,6 @@ graph TD
     SRV --> REPO
     REPO --> DB
 ```
-
----
 
 ## 🧠 Engineering Decisions (ADR)
 
@@ -121,6 +120,7 @@ npm install
 npm start
 ```
 
+<<<<<<< HEAD
 Frontend runs on:
 
 ```
@@ -160,3 +160,6 @@ Created by **Marek Jankovič**
 🚧 Actively maintained  
 🔬 Designed for demonstration of enterprise backend architecture  
 🏦 Focused on transactional integrity and financial correctness
+=======
+Created by Marek Jankovič as part of the District 01 Core Banking project.
+>>>>>>> f96a25b55c758c247dda30daeb3293b4b6c10162
