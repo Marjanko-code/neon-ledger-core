@@ -5,6 +5,7 @@ A professional-grade Full-stack banking application built with a focus on financ
 ### 🏗️ System Architecture
 
 ```mermaid
+
 graph TD
     subgraph Frontend_React [banking-frontend]
         UI[Neon Terminal UI]
@@ -29,8 +30,8 @@ graph TD
     SRV --> REPO
     REPO --> DB
 
-    
-Engineering Decisions (ADR)
+
+🧠 Engineering Decisions (ADR)
 Atomic Transactions: Implemented the @Transactional annotation in the Service layer to ensure ACID properties. Money is never deducted from one account without being credited to the other (all-or-nothing principle).
 
 Financial Precision: BigDecimal was chosen over Double or Float to prevent floating-point inaccuracies during currency calculations.
